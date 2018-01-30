@@ -4,34 +4,104 @@
 //
 //  Created by Kozak, Luca on 2018. 01. 25..
 //  Copyright © 2018. Kozak, Luca. All rights reserved.
-//
+// "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
 
 #import "NewTaskViewController.h"
 
-@interface NewTaskViewController ()
+@interface NewTaskViewController () {
+    NSArray *hours;
+}
+
+@property (weak, nonatomic) IBOutlet UITextField *tasknameField;
+// @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UITextField *workhourField;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
 @implementation NewTaskViewController
 
+-(BOOL) validateHour:(NSString *)candidate {
+    NSString *hourRegex = @"[0-9]{1,10}";
+    NSPredicate *hourTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", hourRegex];
+    
+    return [hourTest evaluateWithObject:candidate];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   //  hours = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
+    
+   //  self.pickerView.dataSource = self;
+   //  self.pickerView.delegate = self;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+/* -(NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
+//     return 1;
+// }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// -(NSInteger)pickerView: (UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return hours.count;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return hours[row];
+}
+
+-(void)pickerView: (UIPickerView *)pickerView didSelectRow:(NSInteger) inComponent:(NSInteger)component {
+    self.label.text = hours[row];
 }
 */
 
+
+- (IBAction)savenewtask:(id)sender {
+    
+    if ([ _tasknameField.text isEqualToString:@""] ||
+        [ _workhourField.text isEqualToString:@""] ||
+        ![self validateHour:_workhourField.text])
+        
+    {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"OOops!" message:@"Something is wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [error show];
+    }
+    else {
+        [self saveNewTask];
+    }
+}
+    
+- (void) saveNewTask {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:_tasknameField.text forKey:@"taskname"];
+        [defaults setObject:_workhourField.text forKey:@"workhour"];
+        
+        [defaults synchronize];
+    
+        UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added a new task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+       // [self performSegueWithIdentifier:@"backtohome" sender:self];
+    
+}
+- (void) setLabel:(UILabel *)label
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *taskname = [defaults objectForKey:@"taskname"];
+    
+    _label = label;
+    self.label.text = [NSString stringWithFormat:@" %@", taskname];
+}
+
+
+
+
 @end
+

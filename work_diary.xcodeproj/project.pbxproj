@@ -20,8 +20,8 @@
 		0632A3EC2019FE660068218B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A3EB2019FE660068218B /* HomeViewController.m */; };
 		0632A3EF201A20980068218B /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A3EE201A20980068218B /* NewTaskViewController.m */; };
 		0632A3F2201A221A0068218B /* LogWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A3F1201A221A0068218B /* LogWorkViewController.m */; };
-		0632A3F5201A222C0068218B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A3F4201A222C0068218B /* HistoryViewController.m */; };
 		0632A439201B4D5D0068218B /* Assets 12-43-56-910.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */; };
+		0632A43C2020754E0068218B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A43B2020754E0068218B /* HistoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +68,9 @@
 		0632A3EE201A20980068218B /* NewTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskViewController.m; sourceTree = "<group>"; };
 		0632A3F0201A221A0068218B /* LogWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWorkViewController.h; sourceTree = "<group>"; };
 		0632A3F1201A221A0068218B /* LogWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWorkViewController.m; sourceTree = "<group>"; };
-		0632A3F3201A222C0068218B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		0632A3F4201A222C0068218B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 12-43-56-910.xcassets"; sourceTree = "<group>"; };
+		0632A43A2020754E0068218B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		0632A43B2020754E0068218B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,9 +135,9 @@
 				0632A3EE201A20980068218B /* NewTaskViewController.m */,
 				0632A3F0201A221A0068218B /* LogWorkViewController.h */,
 				0632A3F1201A221A0068218B /* LogWorkViewController.m */,
-				0632A3F3201A222C0068218B /* HistoryViewController.h */,
-				0632A3F4201A222C0068218B /* HistoryViewController.m */,
 				0632A3B72019E6050068218B /* Main.storyboard */,
+				0632A43A2020754E0068218B /* HistoryViewController.h */,
+				0632A43B2020754E0068218B /* HistoryViewController.m */,
 				0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */,
 				0632A3BF2019E6050068218B /* LaunchScreen.storyboard */,
 				0632A3C22019E6050068218B /* Info.plist */,
@@ -313,7 +313,7 @@
 				0632A3E62019FE2E0068218B /* ActivationViewController.m in Sources */,
 				0632A3B62019E6050068218B /* ViewController.m in Sources */,
 				0632A3E92019FE4A0068218B /* LoginViewController.m in Sources */,
-				0632A3F5201A222C0068218B /* HistoryViewController.m in Sources */,
+				0632A43C2020754E0068218B /* HistoryViewController.m in Sources */,
 				0632A3F2201A221A0068218B /* LogWorkViewController.m in Sources */,
 				0632A3B32019E6050068218B /* AppDelegate.m in Sources */,
 				0632A3BC2019E6050068218B /* work_diary.xcdatamodeld in Sources */,
@@ -551,6 +551,7 @@
 				0632A3DD2019E6050068218B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0632A3DE2019E6050068218B /* Build configuration list for PBXNativeTarget "work_diaryTests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +560,7 @@
 				0632A3E02019E6050068218B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0632A3E12019E6050068218B /* Build configuration list for PBXNativeTarget "work_diaryUITests" */ = {
 			isa = XCConfigurationList;
@@ -567,6 +569,7 @@
 				0632A3E32019E6050068218B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

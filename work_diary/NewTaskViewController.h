@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewTaskViewController : UIViewController
+@interface NewTaskViewController :
+UIViewController
+//<UIPickerViewDelegate, UIPickerViewDelegate>
+
+-(BOOL)validateHour:(NSString *)candidate;
 
 @end

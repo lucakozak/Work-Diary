@@ -14,6 +14,7 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (copy, nonatomic) NSArray *tasks;
+@property (copy, nonatomic) NSArray *estimatedhour;
 
 @end
 
@@ -23,12 +24,11 @@
     [super viewDidLoad];
     
     
-    //tasksData = [[NSMutableArray alloc] init];
-    //tasksToDelete = [[NSMutableArray alloc] init];
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tasks = [defaults objectForKey:@"taskname"];
+    self.estimatedhour = [defaults objectForKey:@"estimatedhour"];
+    
     [self.table beginUpdates];
     
     
@@ -73,15 +73,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tasksToDelete addObject: tasksData[indexPath.row]];
     
-    NSString *rowValue = self.tasks[indexPath.row];
+    NSString *rowValueOne = self.tasks[indexPath.row];
+    NSString *rowValueTwo = self.estimatedhour[indexPath.row];
     
-    NSString *message = [[NSString alloc]initWithFormat:@"You selected %@!",rowValue];
+    NSString *messageOne = [[NSString alloc]initWithFormat:@"%@",rowValueOne];
+    NSString *messageTwo = [[NSString alloc]initWithFormat:@"Estimated hours: %@",rowValueTwo];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Row selected" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:messageOne message:messageTwo delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
+    }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tasksToDelete removeObject:tasksData[indexPath.row]];

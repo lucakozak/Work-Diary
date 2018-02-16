@@ -4,15 +4,13 @@
 //
 //  Created by Kozak, Luca on 2018. 01. 25..
 //  Copyright © 2018. Kozak, Luca. All rights reserved.
-// "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
 
 #import "NewTaskViewController.h"
 
 @interface NewTaskViewController () 
 
 @property (weak, nonatomic) IBOutlet UITextField *tasknameField;
-@property (weak, nonatomic) IBOutlet UITextField *workhourField;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UITextField *estimatedhourField;
 
 @end
 
@@ -38,8 +36,8 @@
 - (IBAction)savenewtask:(id)sender {
     
     if ([ _tasknameField.text isEqualToString:@""] ||
-        [ _workhourField.text isEqualToString:@""] ||
-        ![self validateHour:_workhourField.text])
+        [ _estimatedhourField.text isEqualToString:@""] ||
+        ![self validateHour:_estimatedhourField.text])
         
     {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"OOops!" message:@"Something is wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -55,7 +53,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSArray * tasksFromMemory = [defaults objectForKey:@"taskname"];
     NSMutableArray *tasks;
-        NSMutableArray * hours = [defaults objectForKey:@"workhour"];
+        NSMutableArray * estimatedhour = [defaults objectForKey:@"workhour"];
     
     if (!tasksFromMemory) {
         tasks= [[NSMutableArray alloc] init];
@@ -65,10 +63,10 @@
     }
     
         [tasks addObject:self.tasknameField.text];
-        [tasks addObject:self.workhourField.text];
+        [estimatedhour addObject:self.estimatedhourField.text];
     
         [defaults setObject:tasks forKey:@"taskname"];
-        [defaults setObject:hours forKey:@"workhour"];
+        [defaults setObject:estimatedhour forKey:@"estimatedhour"];
         
         [defaults synchronize];
     

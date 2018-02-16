@@ -274,6 +274,15 @@
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dpL-nW-fjZ">
+                                <rect key="frame" x="145" y="179" width="159" height="89"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sCc-rf-NF9" id="2sG-kv-oGx"/>
+                                    <outlet property="delegate" destination="sCc-rf-NF9" id="lrV-nV-aTd"/>
+                                </connections>
+                            </pickerView>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mZR-vO-3aK">
                                 <rect key="frame" x="16" y="349" width="288" height="90"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -288,15 +297,18 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="highlightsToday" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dpL-nW-fjZ">
-                                <rect key="frame" x="145" y="179" width="159" height="89"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBz-Xk-KB9">
+                                <rect key="frame" x="107" y="447" width="107" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="21"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outlet property="dataSource" destination="sCc-rf-NF9" id="2sG-kv-oGx"/>
-                                    <outlet property="delegate" destination="sCc-rf-NF9" id="lrV-nV-aTd"/>
+                                    <action selector="savelogwork:" destination="sCc-rf-NF9" eventType="touchUpInside" id="mmx-8p-r25"/>
+                                    <action selector="savenewtask:" destination="4OS-Pv-yOp" eventType="touchUpInside" id="Qx5-Ji-WZj"/>
                                 </connections>
-                            </pickerView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -304,6 +316,7 @@
                     <connections>
                         <outlet property="datepickerView" destination="mZR-vO-3aK" id="EJn-yL-c56"/>
                         <outlet property="pickerView" destination="dpL-nW-fjZ" id="28i-W4-2gu"/>
+                        <outlet property="workhourField" destination="oIP-MY-W1e" id="bBx-gF-tqh"/>
                     </connections>
                 </viewController>
             </objects>
@@ -343,20 +356,20 @@
                                 <color key="sectionIndexBackgroundColor" white="0.1965144231" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" rowHeight="56" id="DEt-DJ-sU4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="Vh6-qw-Myc">
                                         <rect key="frame" x="0.0" y="55.5" width="288" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DEt-DJ-sU4" id="JdC-tT-izd">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vh6-qw-Myc" id="udO-A5-KoR">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.76890625000000001" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="Vh6-qw-Myc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" rowHeight="56" id="DEt-DJ-sU4">
                                         <rect key="frame" x="0.0" y="111.5" width="288" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vh6-qw-Myc" id="udO-A5-KoR">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DEt-DJ-sU4" id="JdC-tT-izd">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -406,13 +419,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvM-Ju-9ja">
-                                <rect key="frame" x="32" y="317" width="151" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="at6-hG-DFF">
+                                <rect key="frame" x="85" y="269" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Log work"/>
+                                <state key="normal" title="History"/>
                                 <connections>
-                                    <action selector="logwork:" destination="KNY-8V-ml6" eventType="touchUpInside" id="D06-LN-1fe"/>
+                                    <action selector="history:" destination="KNY-8V-ml6" eventType="touchUpInside" id="8iL-LO-ogN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hY-md-Atd">
@@ -422,8 +435,8 @@
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-f5-Fsa">
-                                <rect key="frame" x="32" y="185" width="151" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-f5-Fsa">
+                                <rect key="frame" x="85" y="202" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="+ Add new task"/>
@@ -431,13 +444,13 @@
                                     <action selector="newtask:" destination="KNY-8V-ml6" eventType="touchUpInside" id="71e-4p-eHB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="at6-hG-DFF">
-                                <rect key="frame" x="32" y="242" width="151" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvM-Ju-9ja">
+                                <rect key="frame" x="85" y="337" width="151" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="History"/>
+                                <state key="normal" title="Log work"/>
                                 <connections>
-                                    <action selector="history:" destination="KNY-8V-ml6" eventType="touchUpInside" id="8iL-LO-ogN"/>
+                                    <action selector="logwork:" destination="KNY-8V-ml6" eventType="touchUpInside" id="D06-LN-1fe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -451,7 +464,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2616" y="62"/>
+            <point key="canvasLocation" x="2615.625" y="61.267605633802816"/>
         </scene>
         <!--New Task View Controller-->
         <scene sceneID="w2c-Jo-xNl">
@@ -514,8 +527,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="estimatedhourField" destination="MlM-hL-6dx" id="Ocd-c4-jlM"/>
                         <outlet property="tasknameField" destination="ZqT-En-TZO" id="fWh-zz-5Ns"/>
-                        <outlet property="workhourField" destination="MlM-hL-6dx" id="Rpj-qJ-UBf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSm-vR-d4g" userLabel="First Responder" sceneMemberID="firstResponder"/>

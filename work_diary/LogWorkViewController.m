@@ -11,11 +11,21 @@
 @interface LogWorkViewController (){
     NSArray *tasks;
 }
+@property (weak, nonatomic) IBOutlet UITextField *workhourField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datepickerView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @end
 
 @implementation LogWorkViewController
+
+
+-(BOOL) validateHour:(NSString *)candidate {
+    NSString *hourRegex = @"[0-9]{1,10}";
+    NSPredicate *hourTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", hourRegex];
+    
+    return [hourTest evaluateWithObject:candidate];
+}
+
 
 - (void)viewDidLoad {
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -67,7 +77,44 @@
 }
 
 
+- (IBAction)savelogwork:(id)sender {
+    
+    if ([ _workhourField.text isEqualToString:@""] ||
+        ![self validateHour:_workhourField.text])
+        
+    {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"OOops!" message:@"Something is wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [error show];
+    }
+    else { [self saveHour];
+        
+    }
 
+}
 
+- (void) saveHour {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray * hoursFromMemory = [defaults objectForKey:@"workhour"];
+    NSMutableArray *hours;
+    
+    if (!hoursFromMemory) {
+        hours= [[NSMutableArray alloc] init];
+    }
+    else {
+        hours= [[NSMutableArray alloc] initWithArray:hoursFromMemory];
+    }
+    [hours addObject:self.workhourField.text];
+    
+    [defaults setObject:hours forKey:@"workhour"];
+    
+    [defaults synchronize];
+    
+    UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added work hours to your task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [success show];
+
+    
+}
 
 @end

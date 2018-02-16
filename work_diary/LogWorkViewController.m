@@ -8,30 +8,54 @@
 
 #import "LogWorkViewController.h"
 
-@interface LogWorkViewController ()
-
+@interface LogWorkViewController (){
+    NSArray *tasks;
+}
+@property (weak, nonatomic) IBOutlet UIDatePicker *datepickerView;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @end
 
 @implementation LogWorkViewController
 
 - (void)viewDidLoad {
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    tasks = @[@"",[defaults objectForKey:@"taskname"]];
+      self.pickerView.dataSource = self;
+      self.pickerView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
+    return 1;
 }
-*/
+ 
+-(NSInteger)pickerView: (UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+ {
+ return tasks.count;
+ }
+ 
+ -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+ {
+ return tasks[row];
+ }
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = [UIColor whiteColor];
+    
+    if(component == 0)
+    {
+        label.text = [tasks objectAtIndex:row];
+    }
+
+    return label;
+}
+
+
 
 @end

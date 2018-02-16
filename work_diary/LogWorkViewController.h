@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogWorkViewController : UIViewController
+@interface LogWorkViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDelegate>
 
 @end

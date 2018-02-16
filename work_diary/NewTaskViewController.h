@@ -10,8 +10,6 @@
 
 @interface NewTaskViewController :
 UIViewController
-//<UIPickerViewDelegate, UIPickerViewDelegate>
-
 -(BOOL)validateHour:(NSString *)candidate;
 
 @end

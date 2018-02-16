@@ -8,7 +8,10 @@
 
 #import "HistoryViewController.h"
 
-@interface HistoryViewController ()
+@interface HistoryViewController () {
+    NSMutableArray *tasksToDelete;
+    NSMutableArray *tasksData;
+}
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (copy, nonatomic) NSArray *tasks;
 
@@ -17,47 +20,45 @@
 @implementation HistoryViewController
 
 - (void)viewDidLoad {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [super viewDidLoad];
-    self.tasks = @[@"@",[defaults objectForKey:@"taskname"]];}
+    
+    [self.table beginUpdates];
+    NSArray *arr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:_tasks.count-1 inSection:0]];
+    [self.table insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.table endUpdates];
+    
+    //tasksData = [[NSMutableArray alloc] init];
+    //tasksToDelete = [[NSMutableArray alloc] init];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.tasks = @[[defaults objectForKey:@"taskname"]];}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_tasks.count >0 ) {
     return [self.tasks count];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSString *SimpleIdentifier = @"Simpleidentifier";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SimpleIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    
-    UIImage *image1 = [UIImage imageNamed:@"table.png"];
-    cell.imageView.image = image1;
     
     cell.textLabel.text = self.tasks[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     
-    if (indexPath.row < 2) {
-        cell.detailTextLabel.text = @"First 2";
-    } else {
-        cell.detailTextLabel.text = @"Last 2";
-    }
-    
     return cell;
 }
 
-/*- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
- if (indexPath.row < 2) {
- return 0;
- } else {
- return 1;
- }
- }*/
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row ==0) {
@@ -68,18 +69,27 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tasksToDelete addObject: tasksData[indexPath.row]];
+    
     NSString *rowValue = self.tasks[indexPath.row];
+    
     NSString *message = [[NSString alloc]initWithFormat:@"You selected %@!",rowValue];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Row selected" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tasksToDelete removeObject:tasksData[indexPath.row]];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
 }
+
 
 
 

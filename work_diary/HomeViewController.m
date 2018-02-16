@@ -9,18 +9,13 @@
 #import "HomeViewController.h"
 
 @interface HomeViewController ()
-//@property (weak, nonatomic) IBOutlet UITabBarItem *logwork;
-@property (weak, nonatomic) IBOutlet UITableView *table;
-@property (copy, nonatomic) NSArray *tasks;
 
 @end
 
 @implementation HomeViewController 
 
 - (void)viewDidLoad {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [super viewDidLoad];
-    self.tasks = @[@"@",[defaults objectForKey:@"taskname"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,7 +26,18 @@
     [self performSegueWithIdentifier:@"makenewtask" sender:self];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (IBAction)logwork:(id)sender {
+    [self performSegueWithIdentifier:@"logwork" sender:self];
+
+}
+- (IBAction)history:(id)sender {
+    [self performSegueWithIdentifier:@"viewhistory" sender:self];
+
+}
+
+
+
+/*- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tasks count];
 }
 
@@ -58,13 +64,13 @@
     return cell;
 }
 
-/*- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < 2) {
         return 0;
     } else {
         return 1;
     }
-}*/
+}
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row ==0) {
@@ -86,7 +92,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40;
-}
+}*/
 
 
 @end

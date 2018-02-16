@@ -22,18 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.table beginUpdates];
-    NSArray *arr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:_tasks.count-1 inSection:0]];
-    [self.table insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.table endUpdates];
     
     //tasksData = [[NSMutableArray alloc] init];
     //tasksToDelete = [[NSMutableArray alloc] init];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    self.tasks = @[[defaults objectForKey:@"taskname"]];}
-
+    self.tasks = [defaults objectForKey:@"taskname"];
+    [self.table beginUpdates];
+    
+    
+    NSArray *arr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:_tasks.count-1 inSection:0]];
+    [self.table insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.table endUpdates];
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -61,7 +63,7 @@
 
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row ==0) {
+    if (indexPath.row ==-1) {
         return nil;
     } else {
         return indexPath;

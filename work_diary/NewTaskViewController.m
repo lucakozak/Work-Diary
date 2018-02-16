@@ -53,8 +53,16 @@
 - (void) saveNewTask {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray * tasks = [defaults objectForKey:@"taskname"];
+        NSArray * tasksFromMemory = [defaults objectForKey:@"taskname"];
+    NSMutableArray *tasks;
         NSMutableArray * hours = [defaults objectForKey:@"workhour"];
+    
+    if (!tasksFromMemory) {
+        tasks= [[NSMutableArray alloc] init];
+    }
+    else {
+        tasks= [[NSMutableArray alloc] initWithArray:tasksFromMemory];
+    }
     
         [tasks addObject:self.tasknameField.text];
         [tasks addObject:self.workhourField.text];

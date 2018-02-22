@@ -110,6 +110,7 @@
     
     [defaults synchronize];
     
+    
     UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added work hours to your task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     
     [success show];

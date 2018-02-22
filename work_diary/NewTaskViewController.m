@@ -53,13 +53,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSArray * tasksFromMemory = [defaults objectForKey:@"taskname"];
     NSMutableArray *tasks;
-        NSMutableArray * estimatedhour = [defaults objectForKey:@"estimatedhour"];
+        NSArray * estimatedhourFromMemory = [defaults objectForKey:@"estimatedhour"];
+    NSMutableArray *estimatedhour;
     
     if (!tasksFromMemory) {
         tasks= [[NSMutableArray alloc] init];
     }
     else {
         tasks= [[NSMutableArray alloc] initWithArray:tasksFromMemory];
+    }
+    
+    if (!estimatedhourFromMemory) {
+        estimatedhour= [[NSMutableArray alloc] init];
+    }
+    else {
+        estimatedhour= [[NSMutableArray alloc] initWithArray:tasksFromMemory];
     }
     
         [tasks addObject:self.tasknameField.text];

@@ -91,15 +91,20 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:messageOne message:messageTwo delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     
-    [tasksToDelete addObject: _tasks[indexPath.row]];
+    //[tasksToDelete addObject: _tasks[indexPath.row]];
     
+    BOOL myCellIsPressed = YES;
+    
+    if (myCellIsPressed) {
+        [self buttonPressed];
+    };
     
     
     }
 
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tasksToDelete removeObject:_tasks[indexPath.row]];
+    //[tasksToDelete removeObject:_tasks[indexPath.row]];
 }
 
 
@@ -109,7 +114,7 @@
 }
 
 
-- (IBAction)deleteButton:(UIButton *)sender {
+/*- (IBAction)deleteButton:(UIButton *)sender {
     
    
     sender.selected = !sender.selected;
@@ -122,6 +127,10 @@
        [tasks removeAllObjects];
         [self.table reloadData];
     }
+}*/
+
+-(IBAction)buttonPressed{
+    
 }
 
 

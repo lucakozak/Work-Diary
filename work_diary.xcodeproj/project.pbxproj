@@ -22,6 +22,7 @@
 		0632A3F2201A221A0068218B /* LogWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A3F1201A221A0068218B /* LogWorkViewController.m */; };
 		0632A439201B4D5D0068218B /* Assets 12-43-56-910.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */; };
 		0632A43C2020754E0068218B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A43B2020754E0068218B /* HistoryViewController.m */; };
+		0632A49C203F05480068218B /* TaskDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A49B203F05480068218B /* TaskDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 12-43-56-910.xcassets"; sourceTree = "<group>"; };
 		0632A43A2020754E0068218B /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		0632A43B2020754E0068218B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		0632A49A203F05480068218B /* TaskDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailsViewController.h; sourceTree = "<group>"; };
+		0632A49B203F05480068218B /* TaskDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				0632A3F1201A221A0068218B /* LogWorkViewController.m */,
 				0632A43A2020754E0068218B /* HistoryViewController.h */,
 				0632A43B2020754E0068218B /* HistoryViewController.m */,
+				0632A49A203F05480068218B /* TaskDetailsViewController.h */,
+				0632A49B203F05480068218B /* TaskDetailsViewController.m */,
 				0632A3B72019E6050068218B /* Main.storyboard */,
 				0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */,
 				0632A3BF2019E6050068218B /* LaunchScreen.storyboard */,
@@ -320,6 +325,7 @@
 				0632A3EC2019FE660068218B /* HomeViewController.m in Sources */,
 				0632A3EF201A20980068218B /* NewTaskViewController.m in Sources */,
 				0632A3B02019E6050068218B /* main.m in Sources */,
+				0632A49C203F05480068218B /* TaskDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,6 @@
     NSArray *tasks;
 }
 @property (weak, nonatomic) IBOutlet UITextField *workhourField;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datepickerView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @end
 
@@ -33,16 +32,6 @@
     tasks = [defaults objectForKey:@"taskname"];
       self.pickerView.dataSource = self;
       self.pickerView.delegate = self;
-    
-    //Set Color of Date Picker
-    self.datepickerView.datePickerMode = UIDatePickerModeDate;
-    [self.datepickerView setValue:[UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:1.0f] forKeyPath:@"textColor"];
-    SEL selector = NSSelectorFromString(@"setHighlightsToday:");
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDatePicker instanceMethodSignatureForSelector:selector]];
-    BOOL no = NO;
-    [invocation setSelector:selector];
-    [invocation setArgument:&no atIndex:2];
-    [invocation invokeWithTarget:self.datepickerView];
 }
 
 - (void)didReceiveMemoryWarning {

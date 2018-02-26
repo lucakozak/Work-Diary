@@ -12,7 +12,11 @@
     NSArray *tasks;
 }
 @property (weak, nonatomic) IBOutlet UITextField *workhourField;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (copy, nonatomic) NSArray *navigationParameters;
+@property (nonatomic,strong) NSString *selectedRow;
+
+
 @end
 
 @implementation LogWorkViewController
@@ -30,41 +34,56 @@
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [super viewDidLoad];
     tasks = [defaults objectForKey:@"taskname"];
-      self.pickerView.dataSource = self;
-      self.pickerView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
--(NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
-    return 1;
-}
- 
--(NSInteger)pickerView: (UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
- {
- return tasks.count;
- }
- 
- -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
- {
- return tasks[row];
- }
 
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor whiteColor];
-    
-    if(component == 0)
-    {
-        label.text = [tasks objectAtIndex:row];
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tasks.count >0 ) {
+        return self->tasks.count;
     }
-
-    return label;
+    return 0;
 }
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    cell.textLabel.text = self->tasks[indexPath.row];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    
+    return cell;
+}
+
+
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row ==-1) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //_selectedRow = @indexPath.row;
+    _selectedRow = self->tasks[indexPath.row];
+    //NSString *rowValueOne = self->tasks[indexPath.row];
+    
+    //NSString *messageOne = [[NSString alloc]initWithFormat:@"%@",rowValueOne];
+    
+    //_navigationParameters =  [NSArray arrayWithObjects:messageOne,nil];
+    
+    
+}
 
 - (IBAction)savelogwork:(id)sender {
     
@@ -84,18 +103,30 @@
 - (void) saveHour {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray * hoursFromMemory = [defaults objectForKey:@"workhour"];
-    NSMutableArray *hours;
+    //NSArray * hoursFromMemory = [defaults objectForKey:@"workhour"];
+    //NSMutableArray *hours;
     
-    if (!hoursFromMemory) {
-        hours= [[NSMutableArray alloc] init];
+    NSNumber *newhour = [NSNumber numberWithInt:[self.workhourField.text intValue]];
+    NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
+    NSNumber *oldhour = 0;
+    
+    if (!hoursDictionaryFromMemory) {
+        hoursDictionaryFromMemory = [[NSMutableDictionary alloc] init];
+        //hours= [[NSMutableArray alloc] init];
+        //[hoursDictionaryFromMemory setObject:hours forKey:_selectedRow];
     }
     else {
-        hours= [[NSMutableArray alloc] initWithArray:hoursFromMemory];
+        oldhour = [hoursDictionaryFromMemory objectForKey:_selectedRow];
     }
-    [hours addObject:self.workhourField.text];
     
-    [defaults setObject:hours forKey:@"workhour"];
+    //NSNumber *hour = oldhour + newhour;
+    NSNumber *hour = @([oldhour integerValue] + [newhour intValue]);
+    
+    [hoursDictionaryFromMemory removeObjectForKey:_selectedRow];
+    [hoursDictionaryFromMemory setObject:hour forKey:_selectedRow];
+    
+    [defaults removeObjectForKey:@"workhour"];
+    [defaults setObject:hoursDictionaryFromMemory forKey:@"workhour"];
     
     [defaults synchronize];
     
@@ -106,5 +137,6 @@
 
     
 }
+
 
 @end

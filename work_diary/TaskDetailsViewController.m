@@ -23,6 +23,8 @@
     [super viewDidLoad];
     self.tasknameLabel.text=self.name;
     self.estimatedhoursLabel.text=self.estimatedhour;
+    self.workinghoursLabel.text=self.workhour;
+
     
 }
 

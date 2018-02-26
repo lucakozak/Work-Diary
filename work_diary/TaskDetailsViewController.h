@@ -11,7 +11,7 @@
 @interface TaskDetailsViewController : UIViewController
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *estimatedhour;
-
+@property (copy, nonatomic) NSString *workhour;
 
 
 @end

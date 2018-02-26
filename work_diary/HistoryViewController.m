@@ -7,6 +7,7 @@
 //
 
 #import "HistoryViewController.h"
+#import "TaskDetailsViewController.h"
 
 @interface HistoryViewController () {
     NSMutableArray *tasksToDelete;
@@ -17,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (copy, nonatomic) NSArray *tasks;
 @property (copy, nonatomic) NSArray *estimatedhour;
+@property (copy, nonatomic) NSArray *navigationParameters;
+
 
 @end
 
@@ -26,14 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    tasksToDelete = [[NSMutableArray alloc] init];
-    
+   
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tasks = [defaults objectForKey:@"taskname"];
     self.estimatedhour = [defaults objectForKey:@"estimatedhour"];
-    
-    [self.table beginUpdates];
     
     
     NSArray *arr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:_tasks.count-1 inSection:0]];
@@ -79,32 +79,33 @@
     }
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *rowValueOne = self.tasks[indexPath.row];
     NSString *rowValueTwo = self.estimatedhour[indexPath.row];
     
     NSString *messageOne = [[NSString alloc]initWithFormat:@"%@",rowValueOne];
-    NSString *messageTwo = [[NSString alloc]initWithFormat:@"Estimated hours: %@",rowValueTwo];
+    NSString *messageTwo = [[NSString alloc]initWithFormat:@"%@",rowValueTwo];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:messageOne message:messageTwo delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alert show];
+    _navigationParameters =  [NSArray arrayWithObjects:messageOne, messageTwo,nil];
     
-    //[tasksToDelete addObject: _tasks[indexPath.row]];
+    [self performSegueWithIdentifier:@"details" sender:self ];
     
-    BOOL myCellIsPressed = YES;
-    
-    if (myCellIsPressed) {
-        [self buttonPressed];
-    };
-    
-    
-    }
 
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    {
+       TaskDetailsViewController *vc = [segue destinationViewController];
+        
+        vc.name=_navigationParameters[0];
+        vc.estimatedhour=_navigationParameters[1];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //[tasksToDelete removeObject:_tasks[indexPath.row]];
+    
 }
 
 
@@ -114,24 +115,7 @@
 }
 
 
-/*- (IBAction)deleteButton:(UIButton *)sender {
-    
-   
-    sender.selected = !sender.selected;
-    [self.table setEditing:sender.selected animated:YES];
-    
-    if (_tasks.count) {
-        for (NSString *str in tasksToDelete) {
-        [mutableTasks removeObject:str];
-        }
-       [tasks removeAllObjects];
-        [self.table reloadData];
-    }
-}*/
 
--(IBAction)buttonPressed{
-    
-}
 
 
 @end

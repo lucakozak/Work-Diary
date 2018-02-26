@@ -57,17 +57,17 @@
     NSMutableArray *estimatedhour;
     
     if (!tasksFromMemory) {
-        tasks= [[NSMutableArray alloc] init];
+        tasks = [[NSMutableArray alloc] init];
     }
     else {
-        tasks= [[NSMutableArray alloc] initWithArray:tasksFromMemory];
+        tasks = [[NSMutableArray alloc] initWithArray:tasksFromMemory];
     }
     
     if (!estimatedhourFromMemory) {
-        estimatedhour= [[NSMutableArray alloc] init];
+        estimatedhour = [[NSMutableArray alloc] init];
     }
     else {
-        estimatedhour= [[NSMutableArray alloc] initWithArray:tasksFromMemory];
+        estimatedhour = [[NSMutableArray alloc] initWithArray:estimatedhourFromMemory];
     }
     
         [tasks addObject:self.tasknameField.text];

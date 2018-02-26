@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface TaskDetailsViewController : UIViewController
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *estimatedhour;
+
+
 
 @end

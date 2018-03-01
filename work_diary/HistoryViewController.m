@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.table.allowsMultipleSelectionDuringEditing = NO;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -46,6 +47,8 @@
     }
     return 0;
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     

@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="43"/>
+            <point key="canvasLocation" x="570" y="61"/>
         </scene>
         <!--Activation View Controller-->
         <scene sceneID="FAV-5E-G6G">
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IZ6-NE-7sg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="564" y="835"/>
+            <point key="canvasLocation" x="1371" y="-730"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="0oW-3j-OAI">
@@ -219,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3h-mW-sqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1371" y="61"/>
+            <point key="canvasLocation" x="1601" y="61"/>
         </scene>
         <!--Log work-->
         <scene sceneID="UO7-82-L7s">
@@ -341,7 +341,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.76890625000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" rowHeight="56" id="DEt-DJ-sU4">
@@ -625,7 +625,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPY-8u-hYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-638" y="44"/>
+            <point key="canvasLocation" x="-323" y="61"/>
         </scene>
     </scenes>
     <resources>

@@ -88,10 +88,6 @@
         
         [defaults synchronize];
         
-        /*NSString *passw=[[NSString alloc] initWithString:_passwordField.text];
-        unsigned char result[64];
-        CC_SHA256([passw UTF8String], [passw lengthOfBytesUsingEncoding:NSASCIIStringEncoding],result);
-        NSLog(@"%s", result);*/
         
         [self performSegueWithIdentifier:@"activate" sender:self];
         

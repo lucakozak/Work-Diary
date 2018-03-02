@@ -12,7 +12,7 @@
 @interface HistoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (copy, nonatomic) NSArray *tasks;
+@property (copy, nonatomic) NSMutableArray *tasks;
 @property (copy, nonatomic) NSArray *estimatedhour;
 @property (copy, nonatomic) NSDictionary *workhour;
 @property (copy, nonatomic) NSArray *navigationParameters;
@@ -28,7 +28,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    self.tasks = [defaults objectForKey:@"taskname"];
+    self.tasks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"taskname"]];
     self.estimatedhour = [defaults objectForKey:@"estimatedhour"];
     self.workhour = [defaults objectForKey:@"workhour"];
     
@@ -36,6 +36,10 @@
     [self.table insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.table endUpdates];
     }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -47,8 +51,6 @@
     }
     return 0;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
@@ -84,6 +86,53 @@
     _navigationParameters =  [NSArray arrayWithObjects:messageOne, messageTwo, messageThree, nil];
     
     [self performSegueWithIdentifier:@"details" sender:self ];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+/*
+ NSMutableArray *mutableArray = [[immutableArray mutableCopy] autorelease];
+ 
+ 
+
+NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
+
+ 
+ 
+ - (NSMutableArray *)createMutableArray1:(NSArray *)array
+ {
+ return [NSMutableArray arrayWithArray:array];
+ }
+ 
+ 
+ 
+ - (NSMutableArray *)createMutableArray2:(NSArray *)array
+ {
+ return [[array mutableCopy] autorelease];]
+  
+ 
+ 
+ NSArray: _tasks *mutableTasks = [NSArray arrayWithArray:mutableTasks];
+ }
+ */
+
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        
+      
+        
+        [self.tasks removeObjectAtIndex:indexPath.row];
+        
+        [tableView reloadData];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

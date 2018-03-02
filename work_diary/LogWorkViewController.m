@@ -74,14 +74,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //_selectedRow = @indexPath.row;
+    
     _selectedRow = self->tasks[indexPath.row];
-    //NSString *rowValueOne = self->tasks[indexPath.row];
-    
-    //NSString *messageOne = [[NSString alloc]initWithFormat:@"%@",rowValueOne];
-    
-    //_navigationParameters =  [NSArray arrayWithObjects:messageOne,nil];
-    
     
 }
 
@@ -103,8 +97,6 @@
 - (void) saveHour {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //NSArray * hoursFromMemory = [defaults objectForKey:@"workhour"];
-    //NSMutableArray *hours;
     
     NSNumber *newhour = [NSNumber numberWithInt:[self.workhourField.text intValue]];
     NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
@@ -112,14 +104,12 @@
     
     if (!hoursDictionaryFromMemory) {
         hoursDictionaryFromMemory = [[NSMutableDictionary alloc] init];
-        //hours= [[NSMutableArray alloc] init];
-        //[hoursDictionaryFromMemory setObject:hours forKey:_selectedRow];
+        
     }
     else {
         oldhour = [hoursDictionaryFromMemory objectForKey:_selectedRow];
     }
     
-    //NSNumber *hour = oldhour + newhour;
     NSNumber *hour = @([oldhour integerValue] + [newhour intValue]);
     
     [hoursDictionaryFromMemory removeObjectForKey:_selectedRow];

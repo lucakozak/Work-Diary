@@ -7,6 +7,12 @@
 //
 
 #import "ActivationViewController.h"
+#import <CoreData/CoreData.h>
+
+#import "AppDelegate.h"
+
+
+
 
 @interface ActivationViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *firstnameField;
@@ -52,7 +58,6 @@
         [ _emailField.text isEqualToString:@""]    ||
         [ _passwordField.text isEqualToString:@""] ||
         [ _passwordagainField.text isEqualToString:@""]
-        //|| ![self validateEmail:[_emailField text]]
         )
         
     {
@@ -80,20 +85,21 @@
 }
 
 - (void) registerNewUser{
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
-        [defaults setObject:_emailField.text forKey:@"email"];
-        [defaults setObject:_passwordField.text forKey:@"password"];
-        [defaults setBool:YES forKey:@"registered"];
-        
-        [defaults synchronize];
-        
-        
-        [self performSegueWithIdentifier:@"activate" sender:self];
-        
-        UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have registered a new user" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        
-        [success show];
+    NSManagedObjectContext *context = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
+
+    NSManagedObject *newActivation = [NSEntityDescription insertNewObjectForEntityForName:@"UserDetails" inManagedObjectContext:context];
+    
+    [newActivation setValue:self.emailField.text forKey:@"email"];
+    [newActivation setValue: self.passwordField.text forKey:@"password"];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+
+    NSLog(@"Data saved to CoreData");
+    [self performSegueWithIdentifier:@"activate" sender:self];
+
+}
 
 @end

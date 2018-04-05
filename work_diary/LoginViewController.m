@@ -7,7 +7,8 @@
 //
 
 #import "LoginViewController.h"
-
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -25,23 +26,35 @@
 }
 
 - (IBAction)login:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
-    if ([_emailField.text isEqualToString:[defaults objectForKey:@"email"]]
-        && [_passwordField.text isEqualToString:[defaults objectForKey:@"password"]])
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserDetails"];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    
+    if (!results)
     {
-        [self performSegueWithIdentifier:@"login" sender:self];
-        _emailField.text = nil;
-        _passwordField.text = nil;
-
+        NSLog(@"Error fetching data. %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
     }
     
+    if (results.count > 0) {
+        
+        NSManagedObject *person = (NSManagedObject *)[results objectAtIndex:0];
+        NSString *email = [person valueForKey:@"email"];
+        NSString *password = [person valueForKey:@"password"];
+        if ([_emailField.text isEqualToString:email] && [_passwordField.text isEqualToString:password]) {
+            [self performSegueWithIdentifier:@"login" sender:self];
+        }
+    }
     else
     {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Something is wrong!" message:@"Name or password is not correct!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
         [error show];
     }
     
+
 }
 
 - (IBAction)deactivate:(id)sender {

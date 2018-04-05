@@ -224,7 +224,6 @@
         <!--Log work-->
         <scene sceneID="UO7-82-L7s">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4KL-NH-oPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="sCc-rf-NF9" customClass="LogWorkViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wa6-eY-h1y"/>
@@ -297,8 +296,40 @@
                         <outlet property="workhourField" destination="oIP-MY-W1e" id="bBx-gF-tqh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4KL-NH-oPs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3435" y="585.21126760563379"/>
+            <point key="canvasLocation" x="3435" y="849"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dDE-wf-S7w">
+            <objects>
+                <viewController id="PDK-1x-6nl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wm9-N5-Fdt"/>
+                        <viewControllerLayoutGuide type="bottom" id="OUe-ir-T7b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tVl-Xg-qPU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Smooth Dark Background" translatesAutoresizingMaskIntoConstraints="NO" id="fyk-Wo-V3H">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCJ-VC-Y5Y">
+                                <rect key="frame" x="16" y="69" width="288" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="45"/>
+                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zJ0-f1-vLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2616" y="849"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="09T-1o-HfC">
@@ -316,7 +347,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBt-ln-y8A">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task list" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBt-ln-y8A">
                                 <rect key="frame" x="16" y="77" width="288" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="45"/>
@@ -382,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqv-1z-1Vw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3435" y="-619"/>
+            <point key="canvasLocation" x="3435" y="-409"/>
         </scene>
         <!--Task Details View Controller-->
         <scene sceneID="uit-gh-rML">
@@ -463,10 +494,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcF-bM-zgV">
+                                <rect key="frame" x="34" y="452" width="268" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="conclusionLabel" destination="dcF-bM-zgV" id="gEe-Ol-ZtZ"/>
                         <outlet property="estimatedhoursLabel" destination="VIa-PK-JxO" id="Lar-jU-cmm"/>
                         <outlet property="tasknameLabel" destination="aDP-Zs-5vR" id="bMj-fG-Hvd"/>
                         <outlet property="workinghoursLabel" destination="s9r-Sn-Cjj" id="QwY-iA-2rK"/>
@@ -474,12 +513,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgU-dw-XEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4260" y="-619.0140845070423"/>
+            <point key="canvasLocation" x="4260" y="-732"/>
         </scene>
         <!--Home-->
         <scene sceneID="7fM-Ov-saK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jI8-mG-UpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Home" id="KNY-8V-ml6" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vk6-w5-rcN"/>
@@ -494,12 +532,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="at6-hG-DFF">
-                                <rect key="frame" x="85" y="269" width="151" height="30"/>
+                                <rect key="frame" x="85" y="267" width="151" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="History"/>
+                                <state key="normal" title="Task list"/>
                                 <connections>
-                                    <action selector="history:" destination="KNY-8V-ml6" eventType="touchUpInside" id="8iL-LO-ogN"/>
+                                    <action selector="tasklist:" destination="KNY-8V-ml6" eventType="touchUpInside" id="joY-zP-zyl"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hY-md-Atd">
@@ -527,16 +565,28 @@
                                     <action selector="logwork:" destination="KNY-8V-ml6" eventType="touchUpInside" id="D06-LN-1fe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-Z7-KjT">
+                                <rect key="frame" x="85" y="398" width="151" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="History"/>
+                                <connections>
+                                    <action selector="history:" destination="KNY-8V-ml6" eventType="touchUpInside" id="53S-xS-avk"/>
+                                    <action selector="logwork:" destination="KNY-8V-ml6" eventType="touchUpInside" id="VBu-hY-l0U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="dlc-vh-jMc"/>
                     <connections>
                         <segue destination="4OS-Pv-yOp" kind="show" identifier="makenewtask" id="JEl-Jl-1yd"/>
-                        <segue destination="dEl-TZ-D5E" kind="show" identifier="viewhistory" id="Tam-bq-cPY"/>
+                        <segue destination="dEl-TZ-D5E" kind="show" identifier="viewtasklist" id="Tam-bq-cPY"/>
                         <segue destination="sCc-rf-NF9" kind="show" identifier="logwork" id="ce4-1e-pWS"/>
+                        <segue destination="PDK-1x-6nl" kind="show" identifier="viewhistory" id="YqH-hV-5Ob"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jI8-mG-UpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2615.625" y="61.267605633802816"/>
         </scene>

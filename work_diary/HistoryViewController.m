@@ -12,8 +12,8 @@
 @interface HistoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (copy, nonatomic) NSMutableArray *tasks;
-@property (copy, nonatomic) NSArray *estimatedhour;
+@property (strong, nonatomic) NSMutableArray *tasks;
+@property (strong, nonatomic) NSMutableArray *estimatedhour;
 @property (copy, nonatomic) NSDictionary *workhour;
 @property (copy, nonatomic) NSArray *navigationParameters;
 
@@ -29,12 +29,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tasks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"taskname"]];
-    self.estimatedhour = [defaults objectForKey:@"estimatedhour"];
+    self.estimatedhour = [NSMutableArray arrayWithArray:[defaults objectForKey:@"estimatedhour"]];
     self.workhour = [defaults objectForKey:@"workhour"];
-    
-    NSArray *arr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:_tasks.count-1 inSection:0]];
-    [self.table insertRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.table endUpdates];
     }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -46,7 +42,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_tasks.count >0 ) {
+    if (_tasks.count > 0 ) {
     return self.tasks.count;
     }
     return 0;
@@ -94,44 +90,18 @@
 }
 
 
-/*
- NSMutableArray *mutableArray = [[immutableArray mutableCopy] autorelease];
- 
- 
-
-NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
-
- 
- 
- - (NSMutableArray *)createMutableArray1:(NSArray *)array
- {
- return [NSMutableArray arrayWithArray:array];
- }
- 
- 
- 
- - (NSMutableArray *)createMutableArray2:(NSArray *)array
- {
- return [[array mutableCopy] autorelease];]
-  
- 
- 
- NSArray: _tasks *mutableTasks = [NSArray arrayWithArray:mutableTasks];
- }
- */
-
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         
-      
         
         [self.tasks removeObjectAtIndex:indexPath.row];
+        [self.estimatedhour removeObjectAtIndex:indexPath.row];
         
-        [tableView reloadData];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -140,9 +110,9 @@ NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"work
     {
        TaskDetailsViewController *vc = [segue destinationViewController];
         
-        vc.name=_navigationParameters[0];
-        vc.estimatedhour=_navigationParameters[1];
-        vc.workhour=_navigationParameters[2];
+        vc.name = _navigationParameters[0];
+        vc.estimatedhour = _navigationParameters[1];
+        vc.workhour = _navigationParameters[2];
     }
 }
 

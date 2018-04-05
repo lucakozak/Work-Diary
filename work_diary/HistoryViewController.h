@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HistoryViewController : UIViewController <UITableViewDelegate, UITableViewDelegate> {
+@interface HistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
 }
 @end

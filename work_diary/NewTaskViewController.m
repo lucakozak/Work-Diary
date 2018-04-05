@@ -5,6 +5,7 @@
 //  Created by Kozak, Luca on 2018. 01. 25..
 //  Copyright © 2018. Kozak, Luca. All rights reserved.
 
+#import <CoreData/CoreData.h>
 #import "NewTaskViewController.h"
 
 @interface NewTaskViewController () 
@@ -45,9 +46,11 @@
     }
     else {
         [self saveNewTask];
+        _tasknameField.text = nil;
+        _estimatedhourField.text = nil;
     }
 }
-    
+
 - (void) saveNewTask {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -73,9 +76,10 @@
         [tasks addObject:self.tasknameField.text];
         [estimatedhour addObject:self.estimatedhourField.text];
     
-        [defaults setObject:tasks forKey:@"taskname"];
-        [defaults setObject:estimatedhour forKey:@"estimatedhour"];
+        //[defaults setObject:tasks forKey:@"taskname"];
+        //[defaults setObject:estimatedhour forKey:@"estimatedhour"];
         
+    
         [defaults synchronize];
     
         UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added a new task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];

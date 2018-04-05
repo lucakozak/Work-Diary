@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tasknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *estimatedhoursLabel;
 @property (weak, nonatomic) IBOutlet UILabel *workinghoursLabel;
+@property (weak, nonatomic) IBOutlet UILabel *conclusionLabel;
 
 @end
 
@@ -25,6 +26,18 @@
     self.estimatedhoursLabel.text=self.estimatedhour;
     self.workinghoursLabel.text=self.workhour;
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSNumber *newhour = [NSNumber numberWithInt:[self.estimatedhoursLabel.text intValue]];
+    NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"estimatedhour"] mutableCopy];
+    NSNumber *oldhour = 0;
+    
+}
+
+- (void) setConclusion:(UILabel *)conclusion
+{
+    
+    
     
 }
 

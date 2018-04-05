@@ -30,9 +30,14 @@
     [self performSegueWithIdentifier:@"logwork" sender:self];
 
 }
+- (IBAction)tasklist:(id)sender {
+    [self performSegueWithIdentifier:@"viewtasklist" sender:self];
+
+}
+
 - (IBAction)history:(id)sender {
     [self performSegueWithIdentifier:@"viewhistory" sender:self];
-
+    
 }
 
 

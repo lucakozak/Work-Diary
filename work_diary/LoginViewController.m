@@ -31,6 +31,9 @@
         && [_passwordField.text isEqualToString:[defaults objectForKey:@"password"]])
     {
         [self performSegueWithIdentifier:@"login" sender:self];
+        _emailField.text = nil;
+        _passwordField.text = nil;
+
     }
     
     else

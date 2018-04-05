@@ -89,7 +89,8 @@
         [error show];
     }
     else { [self saveHour];
-        
+        _workhourField.text = nil;
+
     }
 
 }

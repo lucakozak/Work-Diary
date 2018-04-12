@@ -7,6 +7,8 @@
 //
 
 #import "TaskDetailsViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface TaskDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tasknameLabel;

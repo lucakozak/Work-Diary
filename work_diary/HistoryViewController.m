@@ -8,6 +8,8 @@
 
 #import "HistoryViewController.h"
 #import "TaskDetailsViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface HistoryViewController ()
 

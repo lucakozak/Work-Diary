@@ -7,6 +7,8 @@
 //
 
 #import "LogWorkViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface LogWorkViewController (){
     NSArray *tasks;
@@ -97,7 +99,7 @@
 
 - (void) saveHour {
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSNumber *newhour = [NSNumber numberWithInt:[self.workhourField.text intValue]];
     NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
@@ -120,14 +122,31 @@
     [defaults setObject:hoursDictionaryFromMemory forKey:@"workhour"];
     
     [defaults synchronize];
+     
+     UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added work hours to your task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+     
+     [success show];
+     */
+    
+    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
     
-    UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added work hours to your task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskDetails"];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
     
-    [success show];
-
+    if (!results)
+    {
+        NSLog(@"Error fetching data. %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
     
+    if (results.count > 0) {
+        
+        NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:0];
+        NSString *email = [task valueForKey:@"email"];
+        
 }
-
+}
 
 @end

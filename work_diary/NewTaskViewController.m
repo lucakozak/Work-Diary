@@ -5,8 +5,10 @@
 //  Created by Kozak, Luca on 2018. 01. 25..
 //  Copyright © 2018. Kozak, Luca. All rights reserved.
 
-#import <CoreData/CoreData.h>
+
 #import "NewTaskViewController.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface NewTaskViewController () 
 
@@ -53,34 +55,12 @@
 
 - (void) saveNewTask {
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSArray * tasksFromMemory = [defaults objectForKey:@"taskname"];
-    NSMutableArray *tasks;
-        NSArray * estimatedhourFromMemory = [defaults objectForKey:@"estimatedhour"];
-    NSMutableArray *estimatedhour;
+    NSManagedObjectContext *context = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
-    if (!tasksFromMemory) {
-        tasks = [[NSMutableArray alloc] init];
-    }
-    else {
-        tasks = [[NSMutableArray alloc] initWithArray:tasksFromMemory];
-    }
+    NSManagedObject *newActivation = [NSEntityDescription insertNewObjectForEntityForName:@"TaskDetails" inManagedObjectContext:context];
     
-    if (!estimatedhourFromMemory) {
-        estimatedhour = [[NSMutableArray alloc] init];
-    }
-    else {
-        estimatedhour = [[NSMutableArray alloc] initWithArray:estimatedhourFromMemory];
-    }
-    
-        [tasks addObject:self.tasknameField.text];
-        [estimatedhour addObject:self.estimatedhourField.text];
-    
-        //[defaults setObject:tasks forKey:@"taskname"];
-        //[defaults setObject:estimatedhour forKey:@"estimatedhour"];
-        
-    
-        [defaults synchronize];
+    [newActivation setValue:self.tasknameField.text forKey:@"taskname"];
+    [newActivation setValue:[NSDecimalNumber decimalNumberWithString:self.estimatedhourField.text] forKey:@"estimatedhour"];
     
         UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added a new task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     

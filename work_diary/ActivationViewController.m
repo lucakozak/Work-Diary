@@ -85,6 +85,11 @@
 }
 
 - (void) registerNewUser{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"registered"];
+    [defaults synchronize];
+    
     NSManagedObjectContext *context = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
 
     NSManagedObject *newActivation = [NSEntityDescription insertNewObjectForEntityForName:@"UserDetails" inManagedObjectContext:context];

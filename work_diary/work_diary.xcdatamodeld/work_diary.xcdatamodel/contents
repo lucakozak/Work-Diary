@@ -8,6 +8,7 @@
     <entity name="TaskDetails" representedClassName="TaskDetails" syncable="YES" codeGenerationType="class">
         <attribute name="estimatedhour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="taskname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workhour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="UserDetails" representedClassName="UserDetails" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,8 +17,8 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TaskDetails" positionX="-54" positionY="18" width="128" height="30"/>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="HistoryDetails" positionX="-54" positionY="27" width="128" height="90"/>
+        <element name="TaskDetails" positionX="133" positionY="27" width="128" height="88"/>
+        <element name="UserDetails" positionX="-261" positionY="66" width="128" height="105"/>
     </elements>
 </model>

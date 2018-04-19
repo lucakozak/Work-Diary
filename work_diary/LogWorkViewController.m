@@ -11,10 +11,11 @@
 #import <CoreData/CoreData.h>
 
 @interface LogWorkViewController (){
-    NSArray *tasks;
+    //NSArray *taskname;
 }
 @property (weak, nonatomic) IBOutlet UITextField *workhourField;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) NSMutableArray *taskname;
 @property (copy, nonatomic) NSArray *navigationParameters;
 @property (nonatomic,strong) NSString *selectedRow;
 
@@ -33,9 +34,21 @@
 
 
 - (void)viewDidLoad {
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [super viewDidLoad];
-    tasks = [defaults objectForKey:@"taskname"];
+    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskDetails"];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    
+    self.taskname= [[NSMutableArray alloc] init];
+    for (int i=0; i<results.count; i++) {
+        NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:i];
+        NSString *taskname = [task valueForKey:@"taskname"];
+        
+        [self.taskname addObject:taskname];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,8 +58,8 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tasks.count >0 ) {
-        return self->tasks.count;
+    if (_taskname.count >0 ) {
+        return self.taskname.count;
     }
     return 0;
 }
@@ -59,7 +72,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    cell.textLabel.text = self->tasks[indexPath.row];
+    cell.textLabel.text = self.taskname[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     
     return cell;
@@ -77,7 +90,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    _selectedRow = self->tasks[indexPath.row];
+    _selectedRow = self.taskname[indexPath.row];
     
 }
 
@@ -98,26 +111,21 @@
 }
 
 - (void) saveHour {
+    NSManagedObjectContext *context = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
-    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
+    NSManagedObject *saveHour = [NSEntityDescription insertNewObjectForEntityForName:@"TaskDetails" inManagedObjectContext:context];
     
+    [saveHour setValue:self.workhourField.text forKey:@"workhour"];
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskDetails"];
     NSError *error = nil;
-    NSArray *results = [moc executeFetchRequest:request error:&error];
-    
-    if (!results)
-    {
-        NSLog(@"Error fetching data. %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
     
-    if (results.count > 0) {
-        
-        NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:0];
-        NSString *email = [task valueForKey:@"email"];
-        
-}
+    NSLog(@"Data saved to CoreData");
+    [self performSegueWithIdentifier:@"activate" sender:self];
+    
+    
 }
 
 @end

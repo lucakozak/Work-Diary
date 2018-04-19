@@ -23,6 +23,7 @@
 		0632A439201B4D5D0068218B /* Assets 12-43-56-910.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */; };
 		0632A43C2020754E0068218B /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A43B2020754E0068218B /* HistoryViewController.m */; };
 		0632A49C203F05480068218B /* TaskDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0632A49B203F05480068218B /* TaskDetailsViewController.m */; };
+		06FEC4AC2088852100159D97 /* LogTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FEC4AB2088852100159D97 /* LogTimeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		0632A43B2020754E0068218B /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		0632A49A203F05480068218B /* TaskDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailsViewController.h; sourceTree = "<group>"; };
 		0632A49B203F05480068218B /* TaskDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailsViewController.m; sourceTree = "<group>"; };
+		06FEC4AA2088852100159D97 /* LogTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogTimeViewController.h; sourceTree = "<group>"; };
+		06FEC4AB2088852100159D97 /* LogTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogTimeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,8 @@
 				0632A43B2020754E0068218B /* HistoryViewController.m */,
 				0632A49A203F05480068218B /* TaskDetailsViewController.h */,
 				0632A49B203F05480068218B /* TaskDetailsViewController.m */,
+				06FEC4AA2088852100159D97 /* LogTimeViewController.h */,
+				06FEC4AB2088852100159D97 /* LogTimeViewController.m */,
 				0632A3B72019E6050068218B /* Main.storyboard */,
 				0632A438201B4D5D0068218B /* Assets 12-43-56-910.xcassets */,
 				0632A3BF2019E6050068218B /* LaunchScreen.storyboard */,
@@ -321,6 +326,7 @@
 				0632A43C2020754E0068218B /* HistoryViewController.m in Sources */,
 				0632A3F2201A221A0068218B /* LogWorkViewController.m in Sources */,
 				0632A3B32019E6050068218B /* AppDelegate.m in Sources */,
+				06FEC4AC2088852100159D97 /* LogTimeViewController.m in Sources */,
 				0632A3BC2019E6050068218B /* work_diary.xcdatamodeld in Sources */,
 				0632A3EC2019FE660068218B /* HomeViewController.m in Sources */,
 				0632A3EF201A20980068218B /* NewTaskViewController.m in Sources */,

@@ -11,9 +11,9 @@
 #import <CoreData/CoreData.h>
 
 @interface TaskDetailsViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *tasknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *estimatedhoursLabel;
-@property (weak, nonatomic) IBOutlet UILabel *workinghoursLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tasknameField;
+@property (weak, nonatomic) IBOutlet UILabel *estimatedhourField;
+@property (weak, nonatomic) IBOutlet UILabel *workinghourField;
 @property (weak, nonatomic) IBOutlet UILabel *conclusionLabel;
 
 @end
@@ -24,16 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tasknameLabel.text=self.name;
-    self.estimatedhoursLabel.text=self.estimatedhour;
-    self.workinghoursLabel.text=self.workhour;
-
-   /* NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSNumber *newhour = [NSNumber numberWithInt:[self.estimatedhoursLabel.text intValue]];
-    NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"estimatedhour"] mutableCopy];
-    NSNumber *oldhour = 0;
-    */
+    self.tasknameField.text=self.name;
+    self.estimatedhourField.text=self.estimatedhour;
+    self.workinghourField.text=self.workhour;
     
     NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
@@ -44,8 +37,8 @@
     
     NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:0];
     
-    NSNumber *newhour = [NSNumber numberWithInt:[self.estimatedhoursLabel.text intValue]];
-    NSMutableDictionary * hoursDictionaryFromMemory = [task valueForKey:@"estimatedhour"];
+    NSNumber *newhour = [NSNumber numberWithInt:[self.workinghourField.text intValue]];
+    NSMutableDictionary * hoursDictionaryFromMemory = [task valueForKey:@"workhour"];
     NSNumber *oldhour = 0;
 
     

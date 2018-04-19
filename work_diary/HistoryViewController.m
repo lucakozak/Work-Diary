@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSMutableArray *taskname;
 @property (strong, nonatomic) NSMutableArray *estimatedhour;
-@property (copy, nonatomic) NSDictionary *workhour;
+@property (strong, nonatomic) NSMutableArray *workhour;
 @property (copy, nonatomic) NSArray *navigationParameters;
 
 @end
@@ -28,24 +28,29 @@
     [super viewDidLoad];
     self.table.allowsMultipleSelectionDuringEditing = NO;
     
-    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    self.tasks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"taskname"]];
-    self.estimatedhour = [NSMutableArray arrayWithArray:[defaults objectForKey:@"estimatedhour"]];
-    self.workhour = [defaults objectForKey:@"workhour"];
-    }*/
-    
     NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskDetails"];
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
+
+    self.taskname= [[NSMutableArray alloc] init];
+    self.estimatedhour = [[NSMutableArray alloc] init];
+    self.workhour = [[NSMutableArray alloc] init];
     
-    NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:0];
-    NSString *taskname = [task valueForKey:@"taskname"];
-    NSString *estimatedhour = [task valueForKey:@"estimatedhour"];
-    NSString *workhour = [task valueForKey:@"workhour"];
+    for (int i=0; i<results.count; i++) {
+        NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:i];
+        NSString *taskname = [task valueForKey:@"taskname"];
+        NSString *estimatedhour = [task valueForKey:@"estimatedhour"];
+         NSString *workhour = [task valueForKey:@"workhour"];
+
+        [self.taskname addObject:taskname];
+        [self.estimatedhour addObject:estimatedhour];
+        [self.workhour addObject:workhour];
+    }
+    
+    
     }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,13 +93,13 @@
     
     NSString *rowValueOne = self.taskname[indexPath.row];
     NSString *rowValueTwo = self.estimatedhour[indexPath.row];
-    NSNumber *rowValueThree = [self.workhour objectForKey:rowValueOne];
+    NSString *rowValueThree = self.workhour[indexPath.row];
     
     NSString *messageOne = [[NSString alloc]initWithFormat:@"%@",rowValueOne];
     NSString *messageTwo = [[NSString alloc]initWithFormat:@"%@",rowValueTwo];
     NSString *messageThree = [[NSString alloc]initWithFormat:@"%@",rowValueThree];
     
-    _navigationParameters =  [NSArray arrayWithObjects:messageOne, messageTwo, messageThree, nil];
+    _navigationParameters =  [NSArray arrayWithObjects:messageOne,messageTwo, messageThree, nil];
     
     [self performSegueWithIdentifier:@"details" sender:self ];
 }

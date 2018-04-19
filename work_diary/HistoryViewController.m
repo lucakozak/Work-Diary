@@ -14,7 +14,7 @@
 @interface HistoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) NSMutableArray *tasks;
+@property (strong, nonatomic) NSMutableArray *taskname;
 @property (strong, nonatomic) NSMutableArray *estimatedhour;
 @property (copy, nonatomic) NSDictionary *workhour;
 @property (copy, nonatomic) NSArray *navigationParameters;
@@ -28,11 +28,24 @@
     [super viewDidLoad];
     self.table.allowsMultipleSelectionDuringEditing = NO;
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tasks = [NSMutableArray arrayWithArray:[defaults objectForKey:@"taskname"]];
     self.estimatedhour = [NSMutableArray arrayWithArray:[defaults objectForKey:@"estimatedhour"]];
     self.workhour = [defaults objectForKey:@"workhour"];
+    }*/
+    
+    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TaskDetails"];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    
+    NSManagedObject *task = (NSManagedObject *)[results objectAtIndex:0];
+    NSString *taskname = [task valueForKey:@"taskname"];
+    NSString *estimatedhour = [task valueForKey:@"estimatedhour"];
+    NSString *workhour = [task valueForKey:@"workhour"];
     }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,8 +57,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_tasks.count > 0 ) {
-    return self.tasks.count;
+    if (_taskname.count > 0 ) {
+    return self.taskname.count;
     }
     return 0;
 }
@@ -57,7 +70,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    cell.textLabel.text = self.tasks[indexPath.row];
+    cell.textLabel.text = self.taskname[indexPath.row];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     
     return cell;
@@ -73,7 +86,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *rowValueOne = self.tasks[indexPath.row];
+    NSString *rowValueOne = self.taskname[indexPath.row];
     NSString *rowValueTwo = self.estimatedhour[indexPath.row];
     NSNumber *rowValueThree = [self.workhour objectForKey:rowValueOne];
     
@@ -99,7 +112,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         
-        [self.tasks removeObjectAtIndex:indexPath.row];
+        [self.taskname removeObjectAtIndex:indexPath.row];
         [self.estimatedhour removeObjectAtIndex:indexPath.row];
         
         

@@ -99,35 +99,6 @@
 
 - (void) saveHour {
     
-    /*NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSNumber *newhour = [NSNumber numberWithInt:[self.workhourField.text intValue]];
-    NSMutableDictionary * hoursDictionaryFromMemory = [[defaults objectForKey:@"workhour"] mutableCopy];
-    NSNumber *oldhour = 0;
-    
-    if (!hoursDictionaryFromMemory) {
-        hoursDictionaryFromMemory = [[NSMutableDictionary alloc] init];
-        
-    }
-    else {
-        oldhour = [hoursDictionaryFromMemory objectForKey:_selectedRow];
-    }
-    
-    NSNumber *hour = @([oldhour integerValue] + [newhour intValue]);
-    
-    [hoursDictionaryFromMemory removeObjectForKey:_selectedRow];
-    [hoursDictionaryFromMemory setObject:hour forKey:_selectedRow];
-    
-    [defaults removeObjectForKey:@"workhour"];
-    [defaults setObject:hoursDictionaryFromMemory forKey:@"workhour"];
-    
-    [defaults synchronize];
-     
-     UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added work hours to your task, go back to home." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-     
-     [success show];
-     */
-    
     NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
     
     

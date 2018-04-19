@@ -94,12 +94,15 @@
     
     NSError *error = nil;
     if (![context save:&error]) {
-    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }
+    else {
+        
+        NSLog(@"Data saved to CoreData");
+        [self performSegueWithIdentifier:@"activate" sender:self];
 
-    NSLog(@"Data saved to CoreData");
-    [self performSegueWithIdentifier:@"activate" sender:self];
-
+    }
+    
 }
 
 @end

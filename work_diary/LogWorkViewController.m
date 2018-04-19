@@ -103,7 +103,8 @@
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"OOops!" message:@"Something is wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [error show];
     }
-    else { [self saveHour];
+    else {
+        [self saveHour];
         _workhourField.text = nil;
 
     }
@@ -123,7 +124,6 @@
     }
     
     NSLog(@"Data saved to CoreData");
-    [self performSegueWithIdentifier:@"activate" sender:self];
     
     
 }

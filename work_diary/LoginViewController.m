@@ -7,8 +7,10 @@
 //
 
 #import "LoginViewController.h"
+
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
+
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -58,9 +60,42 @@
 }
 
 - (IBAction)deactivate:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:NO forKey:@"registered"];
     
+    NSManagedObjectContext *context =[AppDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *UserDetails = [NSEntityDescription entityForName:@"UserDetails" inManagedObjectContext:context];
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID like %@",userID];
+    [fetchRequest setEntity:UserDetails];
+    //[fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *managedObject in items)
+    {
+        [context deleteObject:managedObject];
+    }
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
+    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+    
+    
+    /*NSFetchRequest *allCars = [[NSFetchRequest alloc] init];
+    [allCars setEntity:[NSEntityDescription entityForName:@"UserDetails" inManagedObjectContext:context]];
+    [allCars setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *cars = [context executeFetchRequest:allCars error:&error];
+    [allCars release];
+    //error handling goes here
+    for (NSManagedObject *car in cars) {
+        [context deleteObject:car];
+    }
+    NSError *saveError = nil;
+    [context save:&saveError];
+    */
+
     [self performSegueWithIdentifier:@"deactivate" sender:self];
 }
 

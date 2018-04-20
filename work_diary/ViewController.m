@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
+
 
 @interface ViewController ()
 
@@ -24,25 +27,30 @@
 }
 - (IBAction)start:(id)sender {
     
+
+    NSManagedObjectContext *moc = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).persistentContainer.viewContext;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserDetails"];
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    
+    if (!results)
     {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSLog(@"No user is regsitered");
         
-        if (![defaults boolForKey:@"registered"])
-        {
-            NSLog(@"No user is regsitered");
-            
-            [self performSegueWithIdentifier:@"firstactivation" sender:self];
-        }
-        
-        else
-        {
-            NSLog(@"user is registered");
-            
-            [self performSegueWithIdentifier:@"activate" sender:self];
-            
-        }
-        
+        [self performSegueWithIdentifier:@"firstactivation" sender:self];
+
     }
+    
+    else /*(results.count > 0)*/ {
+        
+        NSLog(@"user is registered");
+        
+        [self performSegueWithIdentifier:@"activate" sender:self];
+        }
+    
+
 }
 
 
